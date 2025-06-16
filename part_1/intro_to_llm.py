@@ -1,7 +1,6 @@
 # https://academy.towardsai.net/courses/take/beginner-to-advanced-llm-dev/multimedia/59791076-introduction-to-llms-and-how-to-use-via-api
 
 import openai
-import requests
 
 from common import client
 
@@ -142,36 +141,50 @@ def calculate_cost(usage, input_price_per_mil, output_price_per_mil):
     total_cost = input_cost + output_cost
     return total_cost
 
+
 PRICE_INPUT_PER_MIL = 0.60
 PRICE_OUTPUT_PER_MIL = 2.40
 
 print(f"\n--- Cost Calculations (GPT-4o-mini, April 2025 Rates) ---")
-print(f"Prices: Input=${PRICE_INPUT_PER_MIL:.2f}/1M, Output=${PRICE_OUTPUT_PER_MIL:.2f}/1M")
+print(
+    f"Prices: Input=${PRICE_INPUT_PER_MIL:.2f}/1M, Output=${PRICE_OUTPUT_PER_MIL:.2f}/1M"
+)
 
 try:
-    if 'usage_1' in locals(): # Check if usage_1 variable exists
-         cost_1 = calculate_cost(usage_1, PRICE_INPUT_PER_MIL, PRICE_OUTPUT_PER_MIL)
-         if cost_1 is not None:
-              print(f"\nCost for Turn 1:")
-              print(f"  Prompt Tokens: {usage_1.prompt_tokens}, Completion Tokens: {usage_1.completion_tokens}")
-              print(f"  Total Cost: ${cost_1:.8f}")
+    if "usage_1" in locals():  # Check if usage_1 variable exists
+        cost_1 = calculate_cost(usage_1, PRICE_INPUT_PER_MIL, PRICE_OUTPUT_PER_MIL)
+        if cost_1 is not None:
+            print(f"\nCost for Turn 1:")
+            print(
+                f"  Prompt Tokens: {usage_1.prompt_tokens}, Completion Tokens: {usage_1.completion_tokens}"
+            )
+            print(f"  Total Cost: ${cost_1:.8f}")
     else:
-         print("\nSkipping Turn 1 cost calculation (usage_1 not found).")
+        print("\nSkipping Turn 1 cost calculation (usage_1 not found).")
 
     # Calculate cost for Turn 2 (assuming completion_2 and usage_2 exist from Block 3)
-    if 'usage_2' in locals(): # Check if usage_2 variable exists
+    if "usage_2" in locals():  # Check if usage_2 variable exists
         cost_2 = calculate_cost(usage_2, PRICE_INPUT_PER_MIL, PRICE_OUTPUT_PER_MIL)
         if cost_2 is not None:
             print(f"\nCost for Turn 2:")
-            print(f"  Prompt Tokens: {usage_2.prompt_tokens}, Completion Tokens: {usage_2.completion_tokens}")
+            print(
+                f"  Prompt Tokens: {usage_2.prompt_tokens}, Completion Tokens: {usage_2.completion_tokens}"
+            )
             print(f"  Total Cost: ${cost_2:.8f}")
     else:
-         print("\nSkipping Turn 2 cost calculation (usage_2 not found).")
+        print("\nSkipping Turn 2 cost calculation (usage_2 not found).")
 
     # Calculate total conversation cost
-    if 'cost_1' in locals() and 'cost_2' in locals() and cost_1 is not None and cost_2 is not None:
+    if (
+        "cost_1" in locals()
+        and "cost_2" in locals()
+        and cost_1 is not None
+        and cost_2 is not None
+    ):
         total_conversation_cost = cost_1 + cost_2
-        print(f"\nTotal Conversation Cost (Turn 1 + Turn 2): ${total_conversation_cost:.8f}")
+        print(
+            f"\nTotal Conversation Cost (Turn 1 + Turn 2): ${total_conversation_cost:.8f}"
+        )
 
 except NameError as e:
     print(f"\nCould not calculate costs, a required variable is missing: {e}")
