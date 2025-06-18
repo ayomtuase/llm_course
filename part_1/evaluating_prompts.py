@@ -1,4 +1,4 @@
-from common import client
+from common import openai_client
 
 prompt_generation = """
 Generate a table with the 5 most popular pharmaceutical companies and their foundation years.
@@ -14,7 +14,7 @@ Meta | 2004
 ---"""
 
 # Making the API call
-response = client.chat.completions.create(
+response = openai_client.chat.completions.create(
     model="gpt-4o-2024-08-06",
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
@@ -53,7 +53,7 @@ Only respond with "Yes" or "No".
 formatted_prompt = prompt_check_table_new.format(table_to_check=generated_response)
 print("LLM Judge prompt:", formatted_prompt)
 
-response = client.chat.completions.create(
+response = openai_client.chat.completions.create(
     model="gpt-4o-2024-08-06",
     messages=[
         {
@@ -85,7 +85,7 @@ formatted_prompt = prompt_check_table_new.format(table_to_check=badly_formatted_
 
 
 # using LLM as a Judge to check the format
-response = client.chat.completions.create(
+response = openai_client.chat.completions.create(
     model="gpt-4o-2024-08-06",
     messages=[
         {
@@ -130,7 +130,7 @@ formatted_prompt_company_type = prompt_check_table_new.format(
 )
 
 # API Call
-response = client.chat.completions.create(
+response = openai_client.chat.completions.create(
     model="gpt-4o-2024-08-06",
     messages=[
         {

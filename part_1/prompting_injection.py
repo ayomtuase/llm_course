@@ -1,11 +1,11 @@
 import openai
 
-from common import client
+from common import openai_client
 
 system_prompt = """You are a helpful assistant who only answer question related to Artificial Intelligence.
                 If the question is not related, respond with the following: The question is not related to AI."""
 
-response = client.chat.completions.create(
+response = openai_client.chat.completions.create(
     model="gpt-4o-mini",
     temperature=0.0,
     messages=[
@@ -16,7 +16,7 @@ response = client.chat.completions.create(
 
 print("First response:", response.choices[0].message.content)
 
-response = client.chat.completions.create(
+response = openai_client.chat.completions.create(
     model="gpt-4o-mini",
     temperature=0.0,
     messages=[
@@ -27,7 +27,7 @@ response = client.chat.completions.create(
 
 print("Second response:", response.choices[0].message.content)
 
-response = client.chat.completions.create(
+response = openai_client.chat.completions.create(
     model="gpt-4o",
     temperature=0.0,
     messages=[
@@ -44,7 +44,7 @@ response = client.chat.completions.create(
 
 print("Third response:", response.choices[0].message.content)
 
-response = client.chat.completions.create(
+response = openai_client.chat.completions.create(
     model="gpt-4o-mini",
     temperature=0.0,
     messages=[

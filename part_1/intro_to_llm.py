@@ -2,7 +2,7 @@
 
 import openai
 
-from common import client
+from common import openai_client
 
 print("\n--- Starting Conversation: Turn 1 ---")
 
@@ -27,7 +27,7 @@ SEED = 123
 
 try:
     print(f"\nMaking API call to {MODEL}...")
-    completion_1 = client.chat.completions.create(
+    completion_1 = openai_client.chat.completions.create(
         model=MODEL,
         messages=messages_history,
         temperature=TEMPERATURE,
@@ -77,7 +77,7 @@ SEED_2 = 123
 
 try:
     print(f"\nMaking API call to {MODEL} (Turn 2)...")
-    completion_2 = client.chat.completions.create(
+    completion_2 = openai_client.chat.completions.create(
         model=MODEL,
         messages=messages_history,  # Send the *full* history
         temperature=TEMPERATURE_2,

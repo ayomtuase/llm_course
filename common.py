@@ -9,7 +9,7 @@ openai_api_key = os.getenv("OPEN_AI_SECRET_KEY")
 gemini_api_key = os.getenv("GEMINI_API_KEY")
 
 try:
-    client = openai.OpenAI(api_key=openai_api_key)
+    openai_client = openai.OpenAI(api_key=openai_api_key)
     print("OpenAI client initialized successfully.")
 except Exception as e:
     print(f"Error initializing OpenAI client: {e}")
